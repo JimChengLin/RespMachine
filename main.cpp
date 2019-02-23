@@ -19,6 +19,11 @@ int main() {
             std::cout << arg << std::endl;
         }
     }
+    std::string command;
+    RespMachine::AppendArrayLength(&command, 2);
+    RespMachine::AppendBulkString(&command, "LLEN", 4);
+    RespMachine::AppendBulkString(&command, "mylist", 6);
+    std::cout << command << std::endl;
     std::cout << "Done." << std::endl;
     return 0;
 }
