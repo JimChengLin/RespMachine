@@ -10,6 +10,9 @@ class RespMachine {
 public:
     enum State {
         kError = -1,
+        kInvalidMultiBulkLengthError = kError - 1,
+        kDollarSignNotFoundError = kError - 2,
+        kInvalidBulkLength = kError - 3,
         kSuccess = 0,
         kInit,
         kProcess,
@@ -26,8 +29,6 @@ public:
 
     State GetState() const { return state_; }
 
-    ReqType GetReqType() const { return req_type_; }
-
     const std::vector<std::string_view> &
     GetArgv() const { return argv_; }
 
@@ -42,6 +43,8 @@ private:
     State state_ = kInit;
     ReqType req_type_ = kUnknown;
     std::vector<std::string_view> argv_;
+    int multi_bulk_len_ = 0;
+    int bulk_len_ = -1;
 };
 
 #endif //RESPMACHINE_RESP_MACHINE_H
