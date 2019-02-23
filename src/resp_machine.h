@@ -34,6 +34,21 @@ public:
 
     void Reset();
 
+public:
+    static void AppendSimpleString(std::string * buf, const char * s, size_t n);
+
+    static void AppendError(std::string * buf, const char * s, size_t n);
+
+    static void AppendInteger(std::string * buf, long long ll);
+
+    static void AppendBulkString(std::string * buf, const char * s, size_t n);
+
+    static void AppendArrayLength(std::string * buf, long long len);
+
+    static void AppendNullBulkString(std::string * buf);
+
+    static void AppendNullArray(std::string * buf);
+
 private:
     size_t ProcessInlineInput(const char * s, size_t n);
 
